@@ -23,6 +23,6 @@ module Furniture
     # Opt into the framework defaults for this Rails version. Bump this
     # one minor version at a time on each future upgrade stage, after
     # reviewing config/initializers/new_framework_defaults_5_0.rb.
-    config.load_defaults 5.1
+    config.load_defaults 5.2
   end
 end
