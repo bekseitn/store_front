@@ -48,6 +48,18 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 
+  # Ordering#set_order_status hardcodes order_status_id = 1 at checkout
+  # (app/models/ordering.rb) - a pre-existing app quirk, not something to
+  # paper over quietly. Any spec that exercises checkout (directly through
+  # OrderingsController, not just via the :ordering factory) needs that
+  # row to exist, so this covers every spec in one place rather than each
+  # one needing to know about the quirk. Found by a spec failing only
+  # after `db:environment:set` triggered a schema reload that wiped the
+  # row the factory's own guard had created for an earlier run.
+  config.before do
+    OrderStatus.find_or_create_by!(id: 1) { |status| status.name = 'Новый' }
+  end
+
   # RSpec Rails uses metadata to mix in different behaviours to your tests,
   # for example enabling you to call `get` and `post` in request specs. e.g.:
   #

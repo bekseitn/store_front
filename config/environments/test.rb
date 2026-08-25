@@ -57,4 +57,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Per GUIDELINES.md: "tests use GoodJob Inline Adapter" - runs jobs
+  # synchronously in the same process/thread as the request, matching
+  # good_job's own README-documented default for the test environment.
+  config.active_job.queue_adapter = :good_job
+  config.good_job.execution_mode = :inline
 end

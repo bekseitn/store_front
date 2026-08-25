@@ -8,14 +8,8 @@ FactoryBot.define do
     city
     order
 
-    # Ordering#set_order_status hardcodes order_status_id = 1 at
-    # checkout (see app/models/ordering.rb) - belongs_to :order_status
-    # isn't optional, so that row has to actually exist or every
-    # factory-built ordering fails validation. Ensuring it here once
-    # means specs that just want a valid Ordering don't need to know
-    # about this pre-existing quirk.
-    before(:create) do
-      OrderStatus.find_or_create_by!(id: 1) { |status| status.name = 'Новый' }
-    end
+    # order_status_id = 1 is set automatically by Ordering#set_order_status;
+    # spec/rails_helper.rb's global `before` ensures that row exists for
+    # every spec, not just factory-built orderings.
   end
 end

@@ -51,4 +51,11 @@ Rails.application.configure do
   # found by actually booting the server and hitting a 500 on
   # `application.css`, which worked fine before that tag was added.
   config.assets.check_precompiled_asset = false
+
+  # No ActiveJob usage exists yet, but this is the queue adapter
+  # GUIDELINES.md's stack uses (per Stage E). :async runs jobs in the
+  # web server process - good_job's own README-documented default for
+  # development.
+  config.active_job.queue_adapter = :good_job
+  config.good_job.execution_mode = :async
 end

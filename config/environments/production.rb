@@ -83,4 +83,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # No ActiveJob usage exists yet, but this is the queue adapter
+  # GUIDELINES.md's stack uses (per Stage E). :external requires a
+  # separate `good_job start` process - good_job's own README-
+  # documented default for production.
+  config.active_job.queue_adapter = :good_job
+  config.good_job.execution_mode = :external
 end

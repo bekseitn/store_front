@@ -85,6 +85,12 @@ gem 'will_paginate-bootstrap'
 gem 'carrierwave'
 gem 'cloudinary'
 
+# Per GUIDELINES.md ("tests use GoodJob Inline Adapter"). No ActiveJob
+# usage exists anywhere in this app yet (confirmed: no app/jobs, no
+# perform_later call sites) - this is infra for whenever a real job
+# shows up, not a job invented to justify the gem.
+gem 'good_job'
+
 gem 'rails_admin', '~> 3.0' # 3.x targets Rails 6.1-7.x; verify config/initializers/rails_admin.rb against 3.x docs
 gem 'rails-erd'
 
