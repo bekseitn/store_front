@@ -1,0 +1,96 @@
+plugins:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  # Basic configurations
+  TargetRubyVersion: 3.4
+  TargetRailsVersion: 7.2
+  NewCops: enable
+  DisplayCopNames: true
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'config/**/*'
+    - 'doc/**/*'
+
+# Layout/LineLength:
+#   Max: 120
+#   AllowURI: true
+#   URISchemes:
+#     - http
+#     - https
+
+Metrics:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Rails specific configurations
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  EnforcedStyle: slashes
+
+Rails/OutputSafety:
+  Enabled: true
+
+# RSpec configurations
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/requests/**/*'
+    - 'spec/system/**/*'
+
+RSpec/MultipleExpectations:
+  Max: 4
+
+# Performance configurations
+Performance/RedundantMerge:
+  MaxKeyValuePairs: 2
+
+# Custom rule to disable
+Layout/EndOfLine:
+  Enabled: false
+
+# Customize indentation
+Layout/IndentationWidth:
+  Width: 2
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+# Customize hash syntax
+Style/HashSyntax:
+  EnforcedStyle: ruby19_no_mixed_keys
+
+# String literals
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  ConsistentQuotesInMultiline: true
+
+# Disable check for has_many and has_one dependent
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+# Method length
+# Metrics/MethodLength:
+#   Max: 15
+#   CountComments: false
+#   Exclude:
+#     - 'spec/**/*'
+
+# # Block length
+# Metrics/BlockLength:
+#   Max: 30
+#   Exclude:
+#     - 'spec/**/*'
+#     - 'config/routes.rb'

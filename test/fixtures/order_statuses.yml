@@ -1,6 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+# `id: 1` on `one` is deliberate, not a default: Ordering#set_order_params
+# hardcodes `self.order_status_id = 1` at checkout, so an OrderStatus
+# with that exact id has to exist for a real checkout (or a test one)
+# to work. Rails fixtures don't default to sequential ids, so this
+# needs stating explicitly - without it, checkout was one FK violation
+# away from failing, entirely untested until this migration added
+# OrderingsController#create coverage.
 
 one:
+  id: 1
   name: MyString
 
 two:

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -38,4 +40,15 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # The app doesn't use Active Storage (CarrierWave + Cloudinary handle
+  # uploads), but rails_admin 3.x's asset_source touches it regardless -
+  # see config/storage.yml.
+  config.active_storage.service = :local
+
+  # Adding javascript_importmap_tags (Hotwire stage) made Sprockets
+  # start enforcing check_precompiled_asset even here in development -
+  # found by actually booting the server and hitting a 500 on
+  # `application.css`, which worked fine before that tag was added.
+  config.assets.check_precompiled_asset = false
 end

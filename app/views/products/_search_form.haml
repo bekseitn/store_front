@@ -1,13 +1,15 @@
 //Форма поиска
 .well
-  = form_for_filterrific @filterrific do |f| 
+  = form_tag request.path, method: :get do
     .row
-      .col-md-8
-        = f.text_field :search_query, class: 'filterrific-periodically-observed form-control',
-        placeholder: "Введите название продукта для поиска"             
+      .col-md-6
+        = text_field_tag :search_query, params[:search_query], class: 'form-control',
+        placeholder: "Введите название продукта для поиска"
       .col-md-2
-        = f.text_field :with_price_gte, class: 'datepicker form-control', 
+        = text_field_tag :with_price_gte, params[:with_price_gte], class: 'datepicker form-control',
         placeholder: "мин цена"
       .col-md-2
-        = f.text_field :with_price_lt, class: 'datepicker form-control', 
-        placeholder: "макс цена"        
+        = text_field_tag :with_price_lt, params[:with_price_lt], class: 'datepicker form-control',
+        placeholder: "макс цена"
+      .col-md-2
+        = submit_tag "Искать", class: "btn btn-primary"

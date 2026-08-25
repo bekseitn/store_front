@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
-class CartsControllerTest < ActionController::TestCase
-  test "should get show" do
-    get :show
+class CartsControllerTest < ActionDispatch::IntegrationTest
+  test 'should get show' do
+    get cart_path
     assert_response :success
   end
-
 end

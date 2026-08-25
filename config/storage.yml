@@ -1,0 +1,13 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+# Product images are actually handled by CarrierWave + Cloudinary (see
+# app/uploaders/picture_uploader.rb), not Active Storage - this file
+# exists only because rails_admin 3.x's asset_source touches Active
+# Storage's configuration and 500s without it, even though the app
+# doesn't otherwise use it.

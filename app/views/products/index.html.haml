@@ -1,0 +1,8 @@
+%h3.text-center Товары
+.row
+  .col-md-3
+    = render "categories"
+  .col-md-9
+    = turbo_frame_tag "products_results" do
+      = render 'search_form'
+      = render "list", products: @products

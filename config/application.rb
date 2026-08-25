@@ -1,4 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path('boot', __dir__)
 
 require 'rails/all'
 
@@ -20,7 +22,9 @@ module Furniture
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ru
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+    # Opt into the framework defaults for this Rails version. Bump this
+    # one minor version at a time on each future upgrade stage, after
+    # reviewing config/initializers/new_framework_defaults_5_0.rb.
+    config.load_defaults 7.2
   end
 end

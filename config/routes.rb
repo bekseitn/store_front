@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :categories, only: [:show]
   resources :products, only: [:index]
   resource :cart, only: [:show]
-  resources :order_items, only: [:create, :update, :destroy]
-  resources :orderings, only: [:create, :new]
-  root to: "products#index"
+  resources :order_items, only: %i[create update destroy]
+  resources :orderings, only: %i[create new]
+  root to: 'products#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

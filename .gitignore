@@ -2,6 +2,12 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore the encryption key that decrypts config/credentials.yml.enc.
+# Never commit this - set RAILS_MASTER_KEY in the deploy environment
+# instead. (config/credentials.yml.enc itself is safe to commit, it's
+# encrypted.)
+/config/master.key
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -20,5 +26,4 @@ doc/
 .DS_Store
 .idea
 .rvmrc
-.ruby-*
 .secretRakefile

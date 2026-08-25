@@ -1,7 +1,9 @@
-class OrderItemsController < ApplicationController
-  before_filter :set_order
+# frozen_string_literal: true
 
-  def create   
+class OrderItemsController < ApplicationController
+  before_action :set_order
+
+  def create
     @order_item = @order.order_items.new(order_item_params)
     @order.save
     session[:order_id] = @order.id
@@ -9,7 +11,7 @@ class OrderItemsController < ApplicationController
 
   def update
     @order_item = @order.order_items.find(params[:id])
-    @order_item.update_attributes(order_item_params)
+    @order_item.update(order_item_params)
     @order_items = @order.order_items
   end
 
@@ -19,7 +21,7 @@ class OrderItemsController < ApplicationController
     @order_items = @order.order_items
   end
 
-private
+  private
 
   def set_order
     @order = current_order

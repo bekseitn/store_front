@@ -1,4 +1,6 @@
-class CreateOrderItems < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class CreateOrderItems < ActiveRecord::Migration[4.2]
   def change
     create_table :order_items do |t|
       t.references :product, index: true, foreign_key: true

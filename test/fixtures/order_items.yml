@@ -1,15 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+# product/order were blank here before this migration - always
+# invalid per OrderItem's own validations (product_present,
+# order_present), just never surfaced because fixtures bypass
+# validations on insert. Found because rails_admin's reverse-
+# association widget for Product#new calls OrderItem#product_name on
+# every existing order item, which 500s on a nil product.
 
 one:
-  product_id: 
-  order_id: 
+  product: one
+  order: one
   unit_price: 1
   quantity: 1
   total_price: 1
 
 two:
-  product_id: 
-  order_id: 
+  product: two
+  order: two
   unit_price: 1
   quantity: 1
   total_price: 1

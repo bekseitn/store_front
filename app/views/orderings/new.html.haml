@@ -11,7 +11,7 @@
           .col-sm-2= "#{oi.quantity} шт."
           .col-sm-3= number_to_currency oi.unit_price
   .col-md-6
-    = form_for @ordering, html: { class: "form-horizontal" } do |f|
+    = form_with model: @ordering, class: "form-horizontal" do |f|
       - if @ordering.errors.any?
         #error_expl.panel.panel-danger
           .panel-heading

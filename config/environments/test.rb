@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -13,8 +15,24 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure static file server for tests with Cache-Control for performance.
-  config.serve_static_files   = true
-  config.static_cache_control = 'public, max-age=3600'
+  # (both renamed from serve_static_files/static_cache_control in Rails 5)
+  config.public_file_server.enabled = true
+  config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=3600' }
+
+  # The app doesn't use Active Storage (CarrierWave + Cloudinary handle
+  # uploads), but rails_admin 3.x's asset_source touches it regardless -
+  # see config/storage.yml.
+  config.active_storage.service = :test
+
+  # Sprockets defaults config.assets.compile to false outside
+  # development (production-like: only precompiled assets resolve).
+  # Since nothing runs `assets:precompile` before the test suite, that
+  # broke as soon as a page needed to resolve an asset through
+  # Sprockets at request time (javascript_importmap_tags does, for its
+  # module-preload links) - found by actually running the tests after
+  # adding importmap-rails/turbo-rails.
+  config.assets.compile = true
+  config.assets.check_precompiled_asset = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

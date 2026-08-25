@@ -1,37 +1,51 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
+ruby '3.4.9'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.2'
+gem 'rails', '~> 7.2.0'
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails' # was sass-rails - its Sprockets-3-only lineage doesn't satisfy Rails 6's sprockets-rails
 
-gem 'jquery-ui-rails'
-
-# Use jquery as the JavaScript library
+# Use jquery as the JavaScript library (dropped at the next stage, once
+# Turbo/Stimulus replace the last things that needed it)
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+
+# Hotwire: replaces turbolinks (classic) + rails-ujs. turbo-rails'
+# asset-pipeline (Sprockets) install path requires importmap-rails to
+# be present and listed first, even though we're not otherwise moving
+# off Sprockets yet - found by actually checking turbo-rails' README
+# before guessing at a manual Sprockets-only setup.
+gem 'importmap-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-group :production, :staging do
-  gem 'pg'
-  gem 'rails_12factor'
-end
+
+# Rails no longer bundles a default app server - found by actually
+# trying to run `bin/rails server` ("Could not find a server gem").
+gem 'puma'
+
+# Postgres driver - needed in every environment, database.yml uses the
+# postgresql adapter for development/test too, not just production/staging.
+gem 'pg'
+
+# rails_12factor removed here (should have happened back at the Rails
+# 5.0 stage - it was folded into Rails core then; noticed late, fixed
+# now instead of leaving it as dead weight).
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -39,20 +53,31 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # Found by actually running the suite: bundler resolves minitest 6.x
+  # by default, but Rails 7.2.3's test runner (line_filtering.rb) calls
+  # Minitest::Test.run with an arity minitest 6 removed - pin to the
+  # 5.x line Rails 7.2 was actually built against.
+  gem 'minitest', '~> 5.0'
 end
 
-gem 'filterrific'
+# spring (dev boot-time speedup) dropped: it conflicts with Rails 7.2's
+# test-environment reloading assumptions (`config.enable_reloading`),
+# found by actually trying to run the test suite - not worth fighting
+# for an app this small, Zeitwerk boot is already fast.
 
-gem 'haml'
-gem "haml-rails", "~> 0.9"
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views.
+  # Found by actually running the app: it was in :development, :test
+  # (was ~> 2.0, Rails-4-only - should also have been bumped back at
+  # the Rails 5.0 stage), and web-console itself warns loudly if
+  # loaded in test - moved to :development only, as it warns to do.
+  gem 'web-console', '~> 4.2'
+end
+
+gem 'haml', '~> 5.2' # haml-rails dropped: haml 5+ registers itself as an
+# ActionView template handler, no separate gem needed
 
 gem 'faker'
-gem 'populator'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
@@ -60,5 +85,10 @@ gem 'will_paginate-bootstrap'
 gem 'carrierwave'
 gem 'cloudinary'
 
-gem 'rails_admin'
-gem "rails-erd"
+gem 'rails_admin', '~> 3.0' # 3.x targets Rails 6.1-7.x; verify config/initializers/rails_admin.rb against 3.x docs
+gem 'rails-erd'
+
+gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false
