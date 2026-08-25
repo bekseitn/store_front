@@ -3,7 +3,13 @@
 class Ordering < ApplicationRecord
   belongs_to :order_status
   belongs_to :order
-  belongs_to :city
+  # optional: true because we handle its presence explicitly below - the
+  # implicit belongs_to_required_by_default check produces an untranslated
+  # "Translation missing" (:required i18n key has no Russian message here,
+  # unlike :blank) instead of a real error, found by actually triggering
+  # this validation in a browser. Both checks firing at once (before this
+  # was added) also just duplicated the "can't be blank" message.
+  belongs_to :city, optional: true
   has_many :order_items, dependent: :destroy
   # order_status_id has to be set before validation runs, not just
   # before_create: belongs_to_required_by_default (Rails 5+) added an
@@ -15,7 +21,7 @@ class Ordering < ApplicationRecord
   before_create :set_total
   after_create :set_order_items
 
-  validates :name, :address, :phone, presence: true
+  validates :city, :name, :address, :phone, presence: true
 
   private
 

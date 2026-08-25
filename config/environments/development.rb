@@ -45,4 +45,10 @@ Rails.application.configure do
   # uploads), but rails_admin 3.x's asset_source touches it regardless -
   # see config/storage.yml.
   config.active_storage.service = :local
+
+  # Adding javascript_importmap_tags (Hotwire stage) made Sprockets
+  # start enforcing check_precompiled_asset even here in development -
+  # found by actually booting the server and hitting a 500 on
+  # `application.css`, which worked fine before that tag was added.
+  config.assets.check_precompiled_asset = false
 end

@@ -3,22 +3,24 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Furniture
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbo-track' => 'reload'
+    = javascript_include_tag 'legacy', 'data-turbo-track' => 'reload'
     = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
     = javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
     = csrf_meta_tags
+    = javascript_importmap_tags
   %body
     .container
       .row
         .col-md-6
           %h1= link_to "Магазин", root_path
         .col-md-6.text-right
-          %h1.cart-text= render 'layouts/cart_text'
+          %h1#cart_text.cart-text= render 'layouts/cart_text'
       %hr/
-      - flash.each do |name, msg|
-        - if msg.is_a?(String)
-          %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
-            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-            = content_tag :div, msg, :id => "flash_#{name}"      
+      #flash_messages
+        - flash.each do |name, msg|
+          - if msg.is_a?(String)
+            %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
+              %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+              = content_tag :div, msg, :id => "flash_#{name}"
       = yield

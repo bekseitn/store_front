@@ -13,12 +13,20 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'sassc-rails' # was sass-rails - its Sprockets-3-only lineage doesn't satisfy Rails 6's sprockets-rails
 
-# Use jquery as the JavaScript library
+# Use jquery as the JavaScript library (dropped at the next stage, once
+# Turbo/Stimulus replace the last things that needed it)
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+
+# Hotwire: replaces turbolinks (classic) + rails-ujs. turbo-rails'
+# asset-pipeline (Sprockets) install path requires importmap-rails to
+# be present and listed first, even though we're not otherwise moving
+# off Sprockets yet - found by actually checking turbo-rails' README
+# before guessing at a manual Sprockets-only setup.
+gem 'importmap-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

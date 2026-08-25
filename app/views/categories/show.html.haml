@@ -4,5 +4,6 @@
   .col-md-3
     = render "products/categories"
   .col-md-9
-    = render 'products/search_form' 
-    = render "products/list", products: @products
+    = turbo_frame_tag "products_results" do
+      = render 'products/search_form'
+      = render "products/list", products: @products

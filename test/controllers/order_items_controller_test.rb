@@ -7,7 +7,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
     product = Product.create!(name: 'Test chair', price: 50, active: true, category: categories(:one))
 
     assert_difference('OrderItem.count', 1) do
-      post order_items_path(format: :js), params: {order_item: {product_id: product.id, quantity: 3}}
+      post order_items_path, params: {order_item: {product_id: product.id, quantity: 3}}, as: :turbo_stream
     end
 
     order_item = OrderItem.last
@@ -19,21 +19,21 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update the item's quantity" do
     product = Product.create!(name: 'Test chair', price: 20, active: true, category: categories(:one))
-    post order_items_path(format: :js), params: {order_item: {product_id: product.id, quantity: 1}}
+    post order_items_path, params: {order_item: {product_id: product.id, quantity: 1}}, as: :turbo_stream
     order_item = OrderItem.last
 
-    patch order_item_path(order_item, format: :js), params: {order_item: {quantity: 5}}
+    patch order_item_path(order_item), params: {order_item: {quantity: 5}}, as: :turbo_stream
     assert_response :success
     assert_equal 5, order_item.reload.quantity
   end
 
   test 'should destroy the item' do
     product = Product.create!(name: 'Test chair', price: 20, active: true, category: categories(:one))
-    post order_items_path(format: :js), params: {order_item: {product_id: product.id, quantity: 1}}
+    post order_items_path, params: {order_item: {product_id: product.id, quantity: 1}}, as: :turbo_stream
     order_item = OrderItem.last
 
     assert_difference('OrderItem.count', -1) do
-      delete order_item_path(order_item, format: :js)
+      delete order_item_path(order_item), as: :turbo_stream
     end
   end
 end

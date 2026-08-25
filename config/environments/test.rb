@@ -24,6 +24,16 @@ Rails.application.configure do
   # see config/storage.yml.
   config.active_storage.service = :test
 
+  # Sprockets defaults config.assets.compile to false outside
+  # development (production-like: only precompiled assets resolve).
+  # Since nothing runs `assets:precompile` before the test suite, that
+  # broke as soon as a page needed to resolve an asset through
+  # Sprockets at request time (javascript_importmap_tags does, for its
+  # module-preload links) - found by actually running the tests after
+  # adding importmap-rails/turbo-rails.
+  config.assets.compile = true
+  config.assets.check_precompiled_asset = false
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

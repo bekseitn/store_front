@@ -16,7 +16,12 @@ class OrderingsController < ApplicationController
         format.html { redirect_to root_path, notice: 'Заказ оформлен' }
         # rubocop:enable Rails/I18nLocaleTexts
       else
-        format.html { render :new }
+        # Turbo Drive requires a non-2xx status on a form-submission
+        # response it's supposed to just re-render in place (a bare 200
+        # here throws "Form responses must redirect to another
+        # location" client-side) - found by actually submitting the
+        # checkout form in a real browser, not from reading the code.
+        format.html { render :new, status: :unprocessable_content }
         format.json { render json: @ordering.errors, status: :unprocessable_content }
       end
     end
