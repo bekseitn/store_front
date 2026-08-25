@@ -5,14 +5,9 @@ class Product < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
   validates :name, presence: true
 
-  filterrific(
-    available_filters: [
-      :search_query,
-      :with_price_gte,
-      :with_price_lt      
-    ]
-  )  
-
+  # These 3 scopes used to be wired up via the filterrific gem
+  # (unmaintained since ~2016); ProductsController#index now applies
+  # them directly from params instead.
   scope :with_price_gte, lambda { |price|
     where('products.price >= ?', price)
   }

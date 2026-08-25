@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.6'
+gem 'rails', '~> 6.1.7'
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -45,10 +45,8 @@ group :development, :test do
   gem 'spring'
 end
 
-gem 'filterrific'
-
-gem 'haml'
-gem "haml-rails", "~> 0.9"
+gem 'haml', '~> 5.2' # haml-rails dropped: haml 5+ registers itself as an
+                      # ActionView template handler, no separate gem needed
 
 gem 'faker'
 gem 'populator'
