@@ -22,7 +22,12 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # (renamed from config.serve_static_files in Rails 5)
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  # Host Authorization (added Rails 6+): no fixed deploy host exists yet
+  # for this app - set this to the real host before deploying.
+  # config.hosts << "your-real-host.example.com"
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier

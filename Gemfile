@@ -3,15 +3,13 @@ source 'https://rubygems.org'
 ruby '2.3.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.8'
+gem 'rails', '~> 6.0.6'
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'sass-rails', '~> 5.0'
-
-gem 'jquery-ui-rails'
+gem 'sassc-rails' # was sass-rails - its Sprockets-3-only lineage doesn't satisfy Rails 6's sprockets-rails
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -61,5 +59,5 @@ gem 'will_paginate-bootstrap'
 gem 'carrierwave'
 gem 'cloudinary'
 
-gem 'rails_admin', '~> 0.8' # bump further once Rails admin releases the corresponding line
+gem 'rails_admin', '~> 1.4' # 1.4.3 is the last of the 1.x line, targets Rails 5.0-6.0
 gem "rails-erd"
