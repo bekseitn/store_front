@@ -2,15 +2,15 @@
 
 ## Project
 
-Furniture Store is a Ruby on Rails 8 application using PostgreSQL, Bootstrap 5,
+Storefront is a Ruby on Rails 8 application using PostgreSQL, Bootstrap 5,
 Hotwire, Haml, and RSpec. RailsAdmin is mounted at `/admin`.
 
 ## Working conventions
 
 - Read and follow [GUIDELINES.md](GUIDELINES.md) before making application
   changes; it is the source of truth for implementation conventions.
-- Use the repository's `furniture-rails` skill in
-  `.codex/skills/furniture-rails` for Rails feature work and reviews.
+- Use the repository's `storefront-rails` skill in
+  `.codex/skills/storefront-rails` for Rails feature work and reviews.
 - Keep customer-facing text in `config/locales/en.yml` and use relative I18n
   keys in views where practical. RailsAdmin uses its own built-in locale.
 - Use `FrontdoorForm` for application forms. Its `group`, `label`, `input`, and

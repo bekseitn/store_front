@@ -1,9 +1,9 @@
 ---
-name: furniture-rails
-description: "Implement or review features in the Furniture Store Rails application. Use for models, checkout/cart behavior, Haml views, I18n, migrations, and RSpec tests in this repository."
+name: storefront-rails
+description: "Implement or review features in the Storefront Rails application. Use for models, checkout/cart behavior, Haml views, I18n, migrations, and RSpec tests in this repository."
 ---
 
-# Furniture Rails
+# Storefront Rails
 
 Read `AGENTS.md` and `GUIDELINES.md` before changing application code.
 

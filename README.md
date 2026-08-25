@@ -1,6 +1,6 @@
-### Furniture online store
+### Storefront
 
-Admin panel link: [Sign in](http://mebel-astana.herokuapp.com/admin)
+Admin panel: `/admin`
 
 * * *
 

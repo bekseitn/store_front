@@ -110,7 +110,7 @@ en:
     close: "Close"
   layouts:
     application:
-      shop_name: "Furniture Store"
+      shop_name: "Online Store"
     cart_text:
       summary: "Items in cart: %{count} (%{total})"
   carts:

@@ -1,6 +1,6 @@
 ---
 name: new-model
-description: Scaffold a new ActiveRecord model in this Rails app — model class, timestamped migration, minitest test file, and an empty fixture — following this project's existing conventions. Use when adding a brand-new model/table to the furniture app.
+description: Scaffold a new ActiveRecord model in this Rails app — model class, timestamped migration, minitest test file, and an empty fixture — following this project's existing conventions. Use when adding a brand-new model/table to the storefront app.
 argument-hint: [ModelName] [field:type ...]
 arguments: model_name fields
 allowed-tools: Read, Write, Bash

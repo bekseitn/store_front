@@ -1,0 +1,4 @@
+interface:
+  display_name: "Storefront Rails"
+  short_description: "Build and review online-store features"
+  default_prompt: "Use $storefront-rails to implement this change in Storefront."

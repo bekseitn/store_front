@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Furniture online store built with Ruby on Rails 4.2.2 / Ruby 2.1.2 / PostgreSQL. Views use Haml + Sass + CoffeeScript + Bootstrap 3. The admin panel is mounted via `rails_admin` at `/admin`.
+Generic online store built with Ruby on Rails 8 / Ruby 3.4 / PostgreSQL. Views use Haml, Bootstrap 5, Hotwire, and Stimulus. The admin panel is mounted via `rails_admin` at `/admin`.
 
 ## Commands
 

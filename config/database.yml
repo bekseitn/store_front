@@ -17,15 +17,15 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-  host: <%= ENV.fetch("FURNITURE_DATABASE_HOST", "localhost") %>
-  username: <%= ENV.fetch("FURNITURE_DATABASE_USERNAME", "postgres") %>
+  host: <%= ENV.fetch("STOREFRONT_DATABASE_HOST", "localhost") %>
+  username: <%= ENV.fetch("STOREFRONT_DATABASE_USERNAME", "postgres") %>
   # Was a plaintext password committed here, shared identically across
   # every environment including "production" - overridable via ENV now;
   # the literal default is kept only so this repo's own local dev/test
   # Postgres role (already configured with it) keeps working with zero
   # setup. Never override this default with a value worth protecting -
   # it's still in git history.
-  password: <%= ENV.fetch("FURNITURE_DATABASE_PASSWORD", "dit321") %>
+  password: <%= ENV.fetch("STOREFRONT_DATABASE_PASSWORD", "dit321") %>
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
@@ -37,11 +37,11 @@ default: &default
 # spec run wiped it out from under a real browser session).
 development:
   <<: *default
-  database: furniture_development
+  database: storefront_development
 
 test:
   <<: *default
-  database: furniture_test
+  database: storefront_test
 
 # As with credentials, you never want to store sensitive information,
 # like your database password, in your source code. If your source code
