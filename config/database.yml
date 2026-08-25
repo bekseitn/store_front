@@ -17,71 +17,44 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-  database: furniture
-  username: postgres
-  password: dit321
-  host: localhost
+  host: <%= ENV.fetch("FURNITURE_DATABASE_HOST", "localhost") %>
+  username: <%= ENV.fetch("FURNITURE_DATABASE_USERNAME", "postgres") %>
+  # Was a plaintext password committed here, shared identically across
+  # every environment including "production" - overridable via ENV now;
+  # the literal default is kept only so this repo's own local dev/test
+  # Postgres role (already configured with it) keeps working with zero
+  # setup. Never override this default with a value worth protecting -
+  # it's still in git history.
+  password: <%= ENV.fetch("FURNITURE_DATABASE_PASSWORD", "dit321") %>
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
 
+# One database per environment, not one shared physical database - a
+# schema reload or cleanup triggered from the test or development side
+# used to silently wipe the other's data too (this exact issue produced
+# a live bug report earlier: a stale session order_id 404ing after a
+# spec run wiped it out from under a real browser session).
 development:
   <<: *default
- 
+  database: furniture_development
 
-  # The specified database role being used to connect to postgres.
-  # To create additional roles in postgres see `$ createuser --help`.
-  # When left blank, postgres will use the default role. This is
-  # the same name as the operating system user that initialized the database.
-  #username: ilike
-
-  # The password associated with the postgres role (username).
-  #password:
-
-  # Connect on a TCP socket. Omitted by default since the client uses a
-  # domain socket that doesn't need configuration. Windows does not have
-  # domain sockets, so uncomment these lines.
-  #host: localhost
-
-  # The TCP port the server listens on. Defaults to 5432.
-  # If your server runs on a different port number, change accordingly.
-  #port: 5432
-
-  # Schema search path. The server defaults to $user,public
-  #schema_search_path: myapp,sharedapp,public
-
-  # Minimum log levels, in increasing order:
-  #   debug5, debug4, debug3, debug2, debug1,
-  #   log, notice, warning, error, fatal, and panic
-  # Defaults to warning.
-  #min_messages: notice
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
+  database: furniture_test
 
-
-# As with config/secrets.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
+# As with credentials, you never want to store sensitive information,
+# like your database password, in your source code. If your source code
+# is ever seen by anyone, they now have access to your database.
 #
-# Instead, provide the password as a unix environment variable when you boot
-# the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
+# Instead, provide the password as a unix environment variable when you
+# boot the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full rundown on how to provide these environment variables in a
 # production deployment.
 #
-# On Heroku and other platform providers, you may have a full connection URL
-# available as an environment variable. For example:
-#
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
-# You can use this database configuration with:
-#
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
+# On Heroku and other platform providers, you may have a full connection
+# URL available as an environment variable - this bypasses `default`
+# entirely (adapter/host/username/etc. all come from the URL), which is
+# correct: production should never fall back to the shared dev password.
 production:
-  <<: *default
-
+  url: <%= ENV["DATABASE_URL"] %>
