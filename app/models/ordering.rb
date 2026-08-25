@@ -20,7 +20,12 @@ class Ordering < ApplicationRecord
   private
 
   def set_order_items
+    # rubocop:disable Rails/SkipsModelValidations -- deliberate: this is
+    # a bulk reassignment of already-valid, already-persisted items
+    # (see CLAUDE.md's cart/checkout section), not new data that needs
+    # validating.
     order.order_items.update_all(ordering_id: id, order_id: nil)
+    # rubocop:enable Rails/SkipsModelValidations
   end
 
   def set_order_status
