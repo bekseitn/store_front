@@ -54,11 +54,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Found by actually running the suite: bundler resolves minitest 6.x
-  # by default, but Rails 7.2.3's test runner (line_filtering.rb) calls
-  # Minitest::Test.run with an arity minitest 6 removed - pin to the
-  # 5.x line Rails 7.2 was actually built against.
-  gem 'minitest', '~> 5.0'
+  # Per GUIDELINES.md: RSpec + FactoryBot, replacing Minitest + fixtures
+  # entirely (see Stage D commit for the full test/ -> spec/ conversion).
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 # spring (dev boot-time speedup) dropped: it conflicts with Rails 7.2's

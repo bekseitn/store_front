@@ -52,7 +52,14 @@ RSpec/DescribeClass:
     - 'spec/system/**/*'
 
 RSpec/MultipleExpectations:
-  Max: 4
+  Max: 8
+
+# GUIDELINES.md: "It's ok to put multiple assertions in the same example" -
+# the default 5-line cap is unworkable for a real request spec that sets up
+# a scenario, acts, and checks several related outcomes (e.g. the checkout
+# spec, which is one coherent behavior, not several).
+RSpec/ExampleLength:
+  Max: 20
 
 # Performance configurations
 Performance/RedundantMerge:
