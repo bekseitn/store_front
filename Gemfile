@@ -60,6 +60,18 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :test do
+  # System specs: drive a real browser (headless Chrome) instead of
+  # just asserting on rendered HTML/status codes, so Turbo/Stimulus
+  # behavior actually gets exercised in CI, not just in this session's
+  # ad-hoc manual Playwright checks.
+  gem 'capybara'
+  # selenium-webdriver 4.6+ bundles Selenium Manager, which resolves and
+  # downloads a matching chromedriver on its own - no separate driver
+  # gem/binary to install or pin.
+  gem 'selenium-webdriver'
+end
+
 # spring (dev boot-time speedup) dropped: it conflicts with Rails 7.2's
 # test-environment reloading assumptions (`config.enable_reloading`),
 # found by actually trying to run the test suite - not worth fighting

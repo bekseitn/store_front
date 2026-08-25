@@ -9,6 +9,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 # return unless Rails.env.test?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -47,6 +48,16 @@ RSpec.configure do |config|
   # config.use_active_record = false
 
   config.include FactoryBot::Syntax::Methods
+
+  # System specs (spec/system/**) drive a real headless Chrome instead of
+  # Capybara's default rack_test driver, so Turbo/Stimulus JS behavior
+  # actually runs - rack_test only parses the response HTML, it doesn't
+  # execute JS at all, which would silently pass specs against pages that
+  # are visibly broken in a real browser (this session hit exactly that
+  # failure mode repeatedly before switching to manual Playwright checks).
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome_headless
+  end
 
   # Ordering#set_order_status hardcodes order_status_id = 1 at checkout
   # (app/models/ordering.rb) - a pre-existing app quirk, not something to
