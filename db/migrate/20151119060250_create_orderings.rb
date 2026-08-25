@@ -1,4 +1,4 @@
-class CreateOrderings < ActiveRecord::Migration
+class CreateOrderings < ActiveRecord::Migration[4.2]
   def change
     create_table :orderings do |t|
       t.references :city, index: true, foreign_key: true
