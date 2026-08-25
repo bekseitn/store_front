@@ -1,11 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+# city/phone were blank/missing here before this migration - always
+# invalid per Ordering's own `validates :city, :name, :address, :phone,
+# presence: true`, just never surfaced (fixtures bypass validation on
+# insert; found while auditing the other broken fixtures this
+# migration turned up).
 
 one:
-  city: 
+  city: one
   address: MyString
   name: MyString
+  phone: MyString
 
 two:
-  city: 
+  city: two
   address: MyString
   name: MyString
+  phone: MyString

@@ -21,7 +21,11 @@ class OrderItem < ActiveRecord::Base
   end
 
   def product_name
-    product.name
+    # rails_admin uses this as OrderItem's object_label_method, and
+    # (unlike the 0.7 line this app was on) calls it even for a brand
+    # new, unsaved record on the admin "new" form - where product is
+    # nil. Found by actually loading /admin/order_item/new.
+    product&.name
   end
 
 private

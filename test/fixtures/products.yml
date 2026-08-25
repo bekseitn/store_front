@@ -3,9 +3,11 @@
 one:
   name: MyString
   price: 9.99
-  active: false
+  active: true
+  category: one
 
 two:
   name: MyString
   price: 9.99
-  active: false
+  active: true
+  category: one

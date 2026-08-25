@@ -38,4 +38,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # The app doesn't use Active Storage (CarrierWave + Cloudinary handle
+  # uploads), but rails_admin 3.x's asset_source touches it regardless -
+  # see config/storage.yml.
+  config.active_storage.service = :local
 end

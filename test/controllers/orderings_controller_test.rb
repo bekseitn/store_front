@@ -7,7 +7,7 @@ class OrderingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create finalizes the cart: moves items onto the ordering and empties the order" do
-    product = Product.create!(name: "Test chair", price: 100, active: true)
+    product = Product.create!(name: "Test chair", price: 100, active: true, category: categories(:one))
     order = Order.create!
     order_item = order.order_items.create!(product: product, quantity: 2)
 
