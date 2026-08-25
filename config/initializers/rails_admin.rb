@@ -1,5 +1,6 @@
-RailsAdmin.config do |config|
+# frozen_string_literal: true
 
+RailsAdmin.config do |config|
   ### Popular gems integration
 
   ## == Devise ==
@@ -31,7 +32,7 @@ RailsAdmin.config do |config|
     object_label_method do
       :name
     end
-  end 
+  end
 
   config.model 'Category' do
     object_label_method do

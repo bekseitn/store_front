@@ -1,4 +1,6 @@
-class OrderItem < ActiveRecord::Base
+# frozen_string_literal: true
+
+class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
   # Intentionally unset until checkout (Ordering#set_order_items assigns
@@ -6,7 +8,7 @@ class OrderItem < ActiveRecord::Base
   # belongs_to_required_by_default would break "add to cart".
   belongs_to :ordering, optional: true
 
-  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :quantity, presence: true, numericality: {only_integer: true, greater_than: 0}
   validate :product_present
   validate :order_present
 
@@ -28,13 +30,14 @@ class OrderItem < ActiveRecord::Base
     product&.name
   end
 
-private
-  def product_present    
-    errors.add(:product, "is not valid or is not active.") if product.nil?
+  private
+
+  def product_present
+    errors.add(:product, 'is not valid or is not active.') if product.nil?
   end
 
-  def order_present 
-    errors.add(:order, "is not a valid order.") if order.nil?
+  def order_present
+    errors.add(:order, 'is not a valid order.') if order.nil?
   end
 
   def finalize

@@ -1,4 +1,6 @@
-class Ordering < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Ordering < ApplicationRecord
   belongs_to :order_status
   belongs_to :order
   belongs_to :city
@@ -13,9 +15,9 @@ class Ordering < ActiveRecord::Base
   before_create :set_total
   after_create :set_order_items
 
-  validates :city, :name, :address, :phone, presence: true
+  validates :name, :address, :phone, presence: true
 
-private
+  private
 
   def set_order_items
     order.order_items.update_all(ordering_id: id, order_id: nil)
@@ -28,5 +30,4 @@ private
   def set_total
     self.total = order.total
   end
-
 end

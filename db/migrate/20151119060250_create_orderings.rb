@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOrderings < ActiveRecord::Migration[4.2]
   def change
     create_table :orderings do |t|
@@ -6,7 +8,7 @@ class CreateOrderings < ActiveRecord::Migration[4.2]
       t.references :order_status, index: true, foreign_key: true
       t.string :address
       t.string :name
-      t.string :phone           
+      t.string :phone
       t.integer :total
 
       t.timestamps null: false

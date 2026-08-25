@@ -1,21 +1,21 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 class PictureUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   include Cloudinary::CarrierWave
-  #process resize_to_limit: [200, 200]
+
+  # process resize_to_limit: [200, 200]
   # Choose what kind of storage to use for this uploader:
   # storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  #def store_dir
-    #{}"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  #end
+  # def store_dir
+  # {}"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -34,8 +34,8 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [150, 150]
-    process :convert => 'png' 
+    process resize_to_fill: [150, 150]
+    process convert: 'png'
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -49,7 +49,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-   def default_url
-      "/images/" + [version_name, "default.png"].compact.join('_')
-   end
+  def default_url
+    "/images/#{[version_name, 'default.png'].compact.join('_')}"
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '3.4.9'
@@ -65,7 +67,7 @@ group :development do
 end
 
 gem 'haml', '~> 5.2' # haml-rails dropped: haml 5+ registers itself as an
-                      # ActionView template handler, no separate gem needed
+# ActionView template handler, no separate gem needed
 
 gem 'faker'
 
@@ -76,4 +78,9 @@ gem 'carrierwave'
 gem 'cloudinary'
 
 gem 'rails_admin', '~> 3.0' # 3.x targets Rails 6.1-7.x; verify config/initializers/rails_admin.rb against 3.x docs
-gem "rails-erd"
+gem 'rails-erd'
+
+gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-rspec', require: false

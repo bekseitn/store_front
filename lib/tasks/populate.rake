@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :db do
-  desc "Fill database with sample data"
-  task :populate => :environment do
+  desc 'Fill database with sample data'
+  task populate: :environment do
     require 'faker'
 
     # Was using the `populator` gem (abandoned, and its PostgreSQLAdapter
