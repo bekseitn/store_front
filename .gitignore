@@ -16,6 +16,17 @@
 /log/*.log
 /tmp
 
+# Precompiled assets are a build artifact, not source - a stale copy of
+# this (committed since the app's original Rails 4.2 days) was shadowing
+# the current importmap/Sprockets output: Sprockets' asset-URL helpers
+# prefer an on-disk manifest when one exists, so the old
+# .sprockets-manifest-*.json here kept resolving "application.js" to a
+# years-old Turbolinks-era bundle instead of the real one, which threw
+# on load and silently prevented Turbo from ever booting in any real
+# browser. Deploys should run `assets:precompile` instead of committing
+# the output.
+/public/assets
+
 # Ignore other unneeded files.
 database.yml
 cloudinary.yml
