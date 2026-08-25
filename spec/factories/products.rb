@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :product do
-    sequence(:name) { |n| "Товар #{n}" }
+    sequence(:name) { |n| "Product #{n}" }
     price { 100 }
     active { true }
     category

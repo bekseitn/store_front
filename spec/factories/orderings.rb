@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :ordering do
-    name { 'Тест Тестов' }
-    address { 'ул. Тестовая, 1' }
+    name { 'Test User' }
+    address { '1 Test Street' }
     phone { '+77771234567' }
     city
     order

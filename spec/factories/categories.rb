@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :category do
-    sequence(:name) { |n| "Категория #{n}" }
+    sequence(:name) { |n| "Category #{n}" }
   end
 end

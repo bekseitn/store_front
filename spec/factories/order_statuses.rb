@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :order_status do
-    sequence(:name) { |n| "Статус #{n}" }
+    sequence(:name) { |n| "Status #{n}" }
   end
 end

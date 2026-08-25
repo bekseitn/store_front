@@ -7,13 +7,13 @@
 #
 # Typical usage:
 #   = f.group(:name, class: "col-md-6") do
-#     = f.label :name, "Имя клиента"
+#     = f.label :name, "Customer name"
 #     = f.input :name
 #     = f.errors :name
 #
 # `input` picks a text_field for plain attributes and a collection_select
 # (with `form-select`) for belongs_to associations, e.g. `f.input :city,
-# include_blank: "Выберите город"`.
+# include_blank: "Select a city"`.
 class FrontdoorForm < ActionView::Helpers::FormBuilder
   def group(_attribute, **html_options, &)
     css = merge_classes('mb-3', html_options.delete(:class))

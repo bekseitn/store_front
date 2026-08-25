@@ -2,34 +2,34 @@
 
 Category.delete_all
 Category.create!([
-                   { name: 'Банкетки' },
-                   { name: 'Диван для отдыха в положении сидя' },
-                   { name: 'Диван-кровать' },
-                   { name: 'Диван-софа' },
-                   { name: 'Диваны' },
-                   { name: 'Диваны и кресла' },
-                   { name: 'Диваны угловые' },
-                   { name: 'Кресла' },
-                   { name: 'Кресла-мешки' },
-                   { name: 'Кухонные уголки' },
-                   { name: 'Кухонный диван' },
-                   { name: 'Кушетки' },
-                   { name: 'Подлокотник' },
-                   { name: 'Стулья' }
+                   { name: 'Benches' },
+                   { name: 'Sofas for sitting' },
+                   { name: 'Sofa beds' },
+                   { name: 'Couches' },
+                   { name: 'Sofas' },
+                   { name: 'Sofas and armchairs' },
+                   { name: 'Corner sofas' },
+                   { name: 'Armchairs' },
+                   { name: 'Bean bag chairs' },
+                   { name: 'Kitchen nooks' },
+                   { name: 'Kitchen sofas' },
+                   { name: 'Daybeds' },
+                   { name: 'Armrests' },
+                   { name: 'Chairs' }
                  ])
 
 OrderStatus.delete_all
 OrderStatus.create!([
-                      { id: 1, name: 'В процессе' },
-                      { id: 2, name: 'На доставке' },
-                      { id: 3, name: 'Доставлен' },
-                      { id: 4, name: 'Отменен' }
+                      { id: 1, name: 'In progress' },
+                      { id: 2, name: 'Out for delivery' },
+                      { id: 3, name: 'Delivered' },
+                      { id: 4, name: 'Cancelled' }
                     ])
 
 City.delete_all
 City.create!([
-               { name: 'Астана' },
-               { name: 'Алматы' },
-               { name: 'Карагада' },
-               { name: 'Актобе' }
+               { name: 'Astana' },
+               { name: 'Almaty' },
+               { name: 'Karaganda' },
+               { name: 'Aktobe' }
              ])

@@ -1,23 +1,155 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  date:
+    formats:
+      default: "%m/%d/%Y"
+      long: "%B %-d, %Y"
+      short: "%b %-d"
+  time:
+    formats:
+      default: "%a, %d %b %Y, %H:%M:%S %z"
+      long: "%B %-d, %Y, %H:%M"
+      short: "%d %b, %H:%M"
+      full: "%B %-d, %Y, %H:%M"
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%n %u"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: RUB
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+  will_paginate:
+    next_label: "Next →"
+    previous_label: "← Previous"
+    page_gap: "&hellip;"
+    page_entries_info:
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count}"
+      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b>"
+      single_page:
+        one: "Displaying 1 %{model}"
+        other: "Displaying all %{count} %{model}"
+        zero: "No %{model} found"
+      single_page_html:
+        one: "Displaying <b>1</b> %{model}"
+        other: "Displaying <b>all %{count}</b> %{model}"
+        zero: "No %{model} found"
+  activerecord:
+    models:
+      category:
+        one: "category"
+        other: "categories"
+      product:
+        one: "product"
+        other: "products"
+      order_item:
+        one: "order item"
+        other: "order items"
+      order_status:
+        one: "order status"
+        other: "order statuses"
+      order:
+        one: "pending order"
+        other: "pending orders"
+      ordering:
+        one: "completed order"
+        other: "completed orders"
+      city:
+        one: "city"
+        other: "cities"
+    attributes:
+      product:
+        name: "name"
+        price: "price"
+        active: "status"
+        category: "category"
+        picture: "image"
+        created_at: "date added"
+        updated_at: "date updated"
+        order_items: "order items"
+      category:
+        name: "name"
+        products: "products"
+      city:
+        name: "name"
+        orderings: "orders"
+      order_item:
+        product: "product"
+        order: "pending order"
+        ordering: "completed order"
+        unit_price: "unit price"
+        quantity: "quantity"
+        total_price: "total"
+      order_status:
+        name: "name"
+        orderings: "orders"
+      ordering:
+        city: "city"
+        order: "pending order"
+        order_status: "status"
+        address: "address"
+        total: "total"
+        name: "customer name"
+        phone: "phone number"
+        created_at: "date added"
+        updated_at: "date updated"
+        order_items: "order items"
+      order:
+        total: "total price"
+        order_items: "order items"
+        created_at: "date added"
+        updated_at: "date updated"
+  common:
+    close: "Close"
+  layouts:
+    application:
+      shop_name: "Furniture Store"
+    cart_text:
+      summary: "Items in cart: %{count} (%{total})"
+  carts:
+    cart_row:
+      price_label: "Price:"
+      update_button: "Update quantity"
+      delete_button: "Remove"
+      delete_confirm: "Are you sure you want to remove '%{name}' from the cart?"
+      total_label: "Total:"
+    shopping_cart:
+      empty_md: "Your cart is empty. Please [return to the store](%{root_path}) and add some items to your cart."
+      checkout_button: "Checkout"
+  order_items:
+    create:
+      error: "Could not add the product to the cart."
+  products:
+    index:
+      title: "Products"
+    list:
+      found_count: "Found %{count}"
+      reset_button: "Reset filters"
+    search_form:
+      query_placeholder: "Enter a product name to search"
+      min_price_placeholder: "Min price"
+      max_price_placeholder: "Max price"
+      submit_button: "Search"
+    product_row:
+      price_label: "Price:"
+      buy_button: "Add to cart"
+  orderings:
+    new:
+      title: "Checkout"
+      total_label: "Total:"
+      quantity: "%{count} pcs."
+      name_label: "Customer name"
+      phone_label: "Phone number"
+      address_label: "Address"
+      city_label: "City"
+      city_placeholder: "Select a city"
+      submit_button: "Place order"
+    create:
+      notice: "Order placed successfully"

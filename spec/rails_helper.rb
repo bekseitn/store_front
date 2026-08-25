@@ -57,7 +57,7 @@ RSpec.configure do |config|
   # after `db:environment:set` triggered a schema reload that wiped the
   # row the factory's own guard had created for an earlier run.
   config.before do
-    OrderStatus.find_or_create_by!(id: 1) { |status| status.name = 'Новый' }
+    OrderStatus.find_or_create_by!(id: 1) { |status| status.name = 'New' }
   end
 
   # RSpec Rails uses metadata to mix in different behaviours to your tests,

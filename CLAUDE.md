@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Мебельный интернет-магазин на Ruby on Rails 4.2.2 / Ruby 2.1.2 / PostgreSQL. Views on Haml + Sass + CoffeeScript + Bootstrap 3. Admin panel is mounted via `rails_admin` at `/admin`.
+Furniture online store built with Ruby on Rails 4.2.2 / Ruby 2.1.2 / PostgreSQL. Views use Haml + Sass + CoffeeScript + Bootstrap 3. The admin panel is mounted via `rails_admin` at `/admin`.
 
 ## Commands
 
