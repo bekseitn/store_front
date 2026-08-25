@@ -1,7 +1,10 @@
 class OrderItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
-  belongs_to :ordering
+  # Intentionally unset until checkout (Ordering#set_order_items assigns
+  # it later) - without `optional: true` here, Rails 5's
+  # belongs_to_required_by_default would break "add to cart".
+  belongs_to :ordering, optional: true
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :product_present

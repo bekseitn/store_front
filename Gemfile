@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.11'
+gem 'rails', '~> 5.0.7'
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -61,5 +61,5 @@ gem 'will_paginate-bootstrap'
 gem 'carrierwave'
 gem 'cloudinary'
 
-gem 'rails_admin'
+gem 'rails_admin', '~> 0.8' # bump further once Rails admin releases the corresponding line
 gem "rails-erd"
