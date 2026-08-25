@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Check the staged version of each changed Ruby file before committing.
+set -euo pipefail
+
+status=0
+
+while IFS= read -r -d '' file; do
+  if ! git show ":$file" | ruby -c; then
+    echo "Ruby syntax check failed: $file" >&2
+    status=1
+  fi
+done < <(git diff --cached --name-only --diff-filter=ACMR -z -- '*.rb')
+
+exit "$status"

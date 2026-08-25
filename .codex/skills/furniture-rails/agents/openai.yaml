@@ -1,0 +1,4 @@
+interface:
+  display_name: "Furniture Rails"
+  short_description: "Build and review Furniture Store features"
+  default_prompt: "Use $furniture-rails to implement this change in the Furniture Store."

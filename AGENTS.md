@@ -9,6 +9,8 @@ Hotwire, Haml, and RSpec. RailsAdmin is mounted at `/admin`.
 
 - Read and follow [GUIDELINES.md](GUIDELINES.md) before making application
   changes; it is the source of truth for implementation conventions.
+- Use the repository's `furniture-rails` skill in
+  `.codex/skills/furniture-rails` for Rails feature work and reviews.
 - Keep customer-facing text in `config/locales/en.yml` and use relative I18n
   keys in views where practical. RailsAdmin uses its own built-in locale.
 - Use `FrontdoorForm` for application forms. Its `group`, `label`, `input`, and
@@ -29,6 +31,10 @@ bin/rails db:seed
 bundle exec rspec
 bundle exec rspec spec/models/product_spec.rb
 ```
+
+Enable the repository hook once per clone with
+`git config core.hooksPath .githooks`; it validates syntax for staged Ruby
+files before commits.
 
 ## Domain notes
 
