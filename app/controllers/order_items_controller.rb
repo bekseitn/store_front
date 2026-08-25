@@ -28,6 +28,6 @@ class OrderItemsController < ApplicationController
   end
 
   def order_item_params
-    params.require(:order_item).permit(:quantity, :product_id)
+    params.expect(order_item: %i[quantity product_id])
   end
 end

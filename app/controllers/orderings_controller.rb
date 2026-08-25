@@ -6,6 +6,7 @@ class OrderingsController < ApplicationController
   end
 
   def create
+    ordering_params = params.expect(ordering: %i[name address phone order_id city_id order_status_id])
     @ordering = Ordering.new(ordering_params)
     respond_to do |format|
       if @ordering.save
@@ -20,11 +21,5 @@ class OrderingsController < ApplicationController
         format.json { render json: @ordering.errors, status: :unprocessable_content }
       end
     end
-  end
-
-  private
-
-  def ordering_params
-    params.require(:ordering).permit(:name, :address, :phone, :order_id, :city_id, :order_status_id)
   end
 end
