@@ -26,5 +26,11 @@ module Furniture
     # one minor version at a time on each future upgrade stage, after
     # reviewing config/initializers/new_framework_defaults_5_0.rb.
     config.load_defaults 8.0
+
+    # Per GUIDELINES.md: all forms use the custom FrontdoorForm builder
+    # (app/form_builders/frontdoor_form.rb) - it only adds new/overridden
+    # methods (group/label/input/errors), so forms that don't use those
+    # (e.g. a bare f.number_field) are unaffected.
+    config.action_view.default_form_builder = 'FrontdoorForm'
   end
 end

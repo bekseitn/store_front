@@ -1,15 +1,15 @@
 //Форма поиска
-.well
+.p-3.mb-3.bg-light.border.rounded
   = form_tag request.path, method: :get do
     .row
       .col-md-6
         = text_field_tag :search_query, params[:search_query], class: 'form-control',
         placeholder: "Введите название продукта для поиска"
       .col-md-2
-        = text_field_tag :with_price_gte, params[:with_price_gte], class: 'datepicker form-control',
+        = text_field_tag :with_price_gte, params[:with_price_gte], class: 'form-control',
         placeholder: "мин цена"
       .col-md-2
-        = text_field_tag :with_price_lt, params[:with_price_lt], class: 'datepicker form-control',
+        = text_field_tag :with_price_lt, params[:with_price_lt], class: 'form-control',
         placeholder: "макс цена"
       .col-md-2
         = submit_tag "Искать", class: "btn btn-primary"

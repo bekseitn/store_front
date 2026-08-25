@@ -1,7 +1,7 @@
 - if @order.errors.any? || @order_item.errors.any?
   = turbo_stream.prepend "flash_messages" do
-    .alert.alert-danger
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
+    .alert.alert-dismissible.fade.show.alert-danger
+      %button.btn-close{"aria-label" => "Закрыть", "data-bs-dismiss" => "alert", :type => "button"}
       Не удалось добавить товар в корзину.
 - else
   = turbo_stream.update "cart_text", render("layouts/cart_text")

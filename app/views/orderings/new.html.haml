@@ -1,43 +1,34 @@
 %h3.text-center Оформить заказ
 .row
   .col-md-6
-    %h4.text-right
-      Сумма: 
+    %h4.text-end
+      Сумма:
       = number_to_currency current_order.total
     - current_order.order_items.each do |oi|
-      .well
-        .row
-          .col-sm-7= oi.product.name
-          .col-sm-2= "#{oi.quantity} шт."
-          .col-sm-3= number_to_currency oi.unit_price
+      .card.mb-2
+        .card-body
+          .row
+            .col-sm-7= oi.product.name
+            .col-sm-2= "#{oi.quantity} шт."
+            .col-sm-3= number_to_currency oi.unit_price
   .col-md-6
-    = form_with model: @ordering, class: "form-horizontal" do |f|
-      - if @ordering.errors.any?
-        #error_expl.panel.panel-danger
-          .panel-heading
-            %h3.panel-title
-              Невозможно сохранить:
-          .panel-body
-            %ul
-              - @ordering.errors.full_messages.each do |msg|
-                %li= msg
-      .form-group
-        = f.hidden_field :order_id
-        = f.label :name, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :name, class: 'form-control'
-      .form-group    
-        = f.label :address, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :address, class: 'form-control'
-      .form-group    
-        = f.label :phone, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.text_field :phone, class: 'form-control'          
-      .form-group    
-        = f.label :city, class: 'col-sm-2 control-label'
-        .col-sm-10
-          = f.collection_select :city_id, City.all, :id, :name,
-        {prompt: "Выберите город"},  {class: "form-control"}
-
-      .text-right= f.submit "Оформить", class: 'btn btn-primary'
+    = form_with model: @ordering do |f|
+      = f.hidden_field :order_id
+      .row
+        = f.group :name, class: "col-md-6" do
+          = f.label :name, "Имя клиента"
+          = f.input :name
+          = f.errors :name
+        = f.group :phone, class: "col-md-6" do
+          = f.label :phone, "Номер телефона"
+          = f.input :phone
+          = f.errors :phone
+      = f.group :address do
+        = f.label :address, "Адрес"
+        = f.input :address
+        = f.errors :address
+      = f.group :city do
+        = f.label :city, "Город"
+        = f.input :city, include_blank: "Выберите город"
+        = f.errors :city
+      .text-end= f.submit "Оформить", class: 'btn btn-primary'

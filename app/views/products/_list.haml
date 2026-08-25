@@ -1,11 +1,10 @@
-.well.well-small
-  .pull-right
-    = link_to 'Сбросить фильтр', request.path, class: "btn btn-default"
+.d-flex.justify-content-between.align-items-center.p-2.mb-3.bg-light.border.rounded
   = "Найдено " + products.count.to_s
+  = link_to 'Сбросить фильтр', request.path, class: "btn btn-secondary"
 
-= will_paginate products, renderer: BootstrapPagination::Rails
+= will_paginate products, renderer: Bootstrap5PaginationRenderer
 
 - products.each do |product|
   = render "products/product_row", product: product, order_item: @order_item
 
-= will_paginate products, renderer: BootstrapPagination::Rails   
+= will_paginate products, renderer: Bootstrap5PaginationRenderer

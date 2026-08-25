@@ -1,22 +1,23 @@
-.well
-  .row
-    .col-md-2.text-center
-      = image_tag product.picture_url(:thumb)  
-    .col-md-6
-      %h4= product.name
-    .col-md-4
-      = form_with model: order_item do |f|
-        %h4.text-right
-          Цена:
-          %span{:style => "color: green"}= number_to_currency order_item.unit_price
-        .row
-          .col-md-4
-            = f.number_field :quantity, value: order_item.quantity.to_i, class: "form-control", min: 1
-            = f.hidden_field :product_id, value: product.id
-          .col-md-8.text-right
-            .btn-group
-              = f.submit "Обновить кол.", class: "btn btn-primary"
-              = link_to "Удалить", order_item, { data: { turbo_confirm: "Вы уверены что хотите удалить '#{order_item.product.name}' из корзины?", turbo_method: :delete }, class: "btn btn-danger" }
-        %h4.text-right
-          Сумма:
-          %span{:style => "color: green"}= number_to_currency order_item.total_price
+.card.mb-3
+  .card-body
+    .row
+      .col-md-2.text-center
+        = image_tag product.picture_url(:thumb)
+      .col-md-6
+        %h4= product.name
+      .col-md-4
+        = form_with model: order_item do |f|
+          %h4.text-end
+            Цена:
+            %span{:style => "color: green"}= number_to_currency order_item.unit_price
+          .row
+            .col-md-4
+              = f.number_field :quantity, value: order_item.quantity.to_i, class: "form-control", min: 1
+              = f.hidden_field :product_id, value: product.id
+            .col-md-8.text-end
+              .btn-group
+                = f.submit "Обновить кол.", class: "btn btn-primary"
+                = link_to "Удалить", order_item, { data: { turbo_confirm: "Вы уверены что хотите удалить '#{order_item.product.name}' из корзины?", turbo_method: :delete }, class: "btn btn-danger" }
+          %h4.text-end
+            Сумма:
+            %span{:style => "color: green"}= number_to_currency order_item.total_price
