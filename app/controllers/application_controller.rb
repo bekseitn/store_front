@@ -3,7 +3,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_order
+  helper_method :current_order, :current_store_setting
+
+  # Memoized per request, not cached across requests - this is a tiny
+  # table (one row) and the rest of the app doesn't use a cache store
+  # either, so adding one just for this would be inconsistent.
+  def current_store_setting
+    @current_store_setting ||= StoreSetting.current
+  end
 
   def current_order
     # find_by, not find: session[:order_id] can outlive the Order it

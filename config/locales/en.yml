@@ -109,8 +109,9 @@ en:
   common:
     close: "Close"
   layouts:
-    application:
-      shop_name: "Online Store"
+    # application.shop_name removed: the header/title now come from
+    # StoreSetting.current.store_name (editable in /admin) instead of a
+    # static translation.
     cart_text:
       summary: "Items in cart: %{count} (%{total})"
   carts:

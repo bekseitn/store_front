@@ -66,15 +66,28 @@ RailsAdmin.config do |config|
     end
   end
 
+  # StoreSetting is a singleton (see its own only_one_record validation) -
+  # self.current auto-creates the one row if it's missing, so there's
+  # never a real reason to show "new" or "delete" for it here.
+  config.model 'StoreSetting' do
+    object_label_method do
+      :store_name
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except ['StoreSetting']
+    end
     export
     bulk_delete
     show
     edit
-    delete
+    delete do
+      except ['StoreSetting']
+    end
     show_in_app
 
     ## With an audit adapter, you can add:
