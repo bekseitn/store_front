@@ -4,12 +4,12 @@
     .row
       .col-md-6
         = text_field_tag :search_query, params[:search_query], class: 'form-control',
-        placeholder: "Введите название продукта для поиска"
+        placeholder: t('.query_placeholder')
       .col-md-2
         = text_field_tag :with_price_gte, params[:with_price_gte], class: 'form-control',
-        placeholder: "мин цена"
+        placeholder: t('.min_price_placeholder')
       .col-md-2
         = text_field_tag :with_price_lt, params[:with_price_lt], class: 'form-control',
-        placeholder: "макс цена"
+        placeholder: t('.max_price_placeholder')
       .col-md-2
-        = submit_tag "Искать", class: "btn btn-primary"
+        = submit_tag t('.submit_button'), class: "btn btn-primary"

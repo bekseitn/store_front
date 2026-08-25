@@ -366,3 +366,62 @@ ru:
         created_at: "дата добавления"
         updated_at: "дата обновления"
         order_items: "товары в заказах"
+
+  # Everything below was hardcoded Russian text directly in views/
+  # controllers until this stage (GUIDELINES.md: "All public or
+  # client-facing pages will be translated" - rails_admin's own pages
+  # already have their own separate rails_admin.ru.yml and are excluded,
+  # per "Admin pages will not be translated").
+  common:
+    close: "Закрыть"
+
+  layouts:
+    application:
+      shop_name: "Магазин"
+    cart_text:
+      summary: "товаров в корзине: %{count} ( %{total} )"
+
+  carts:
+    cart_row:
+      price_label: "Цена:"
+      update_button: "Обновить кол."
+      delete_button: "Удалить"
+      delete_confirm: "Вы уверены что хотите удалить '%{name}' из корзины?"
+      total_label: "Сумма:"
+    shopping_cart:
+      # _md: contains an embedded link, rendered via config/initializers/markdown.rb
+      empty_md: "В вашей корзине нет товаров. Пожалуйста, [вернитесь](%{root_path}) и добавьте некоторые элементы в корзину."
+      checkout_button: "Оформить заказ"
+
+  order_items:
+    create:
+      error: "Не удалось добавить товар в корзину."
+
+  products:
+    index:
+      title: "Товары"
+    list:
+      found_count: "Найдено %{count}"
+      reset_button: "Сбросить фильтр"
+    search_form:
+      query_placeholder: "Введите название продукта для поиска"
+      min_price_placeholder: "мин цена"
+      max_price_placeholder: "макс цена"
+      submit_button: "Искать"
+    product_row:
+      price_label: "Цена:"
+      buy_button: "Купить"
+
+  orderings:
+    new:
+      title: "Оформить заказ"
+      total_label: "Сумма:"
+      quantity: "%{count} шт."
+      name_label: "Имя клиента"
+      phone_label: "Номер телефона"
+      address_label: "Адрес"
+      city_label: "Город"
+      city_placeholder: "Выберите город"
+      submit_button: "Оформить"
+    create:
+      notice: "Заказ оформлен"

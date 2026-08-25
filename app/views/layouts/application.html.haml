@@ -14,7 +14,7 @@
     .container
       .row
         .col-md-6
-          %h1= link_to "Магазин", root_path
+          %h1= link_to t('.shop_name'), root_path
         .col-md-6.text-end
           %h1#cart_text.cart-text= render 'layouts/cart_text'
       %hr/
@@ -22,6 +22,6 @@
         - flash.each do |name, msg|
           - if msg.is_a?(String)
             %div{:class => "alert alert-dismissible fade show alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
-              %button.btn-close{"aria-label" => "Закрыть", "data-bs-dismiss" => "alert", :type => "button"}
+              %button.btn-close{"aria-label" => t('common.close'), "data-bs-dismiss" => "alert", :type => "button"}
               = content_tag :div, msg, :id => "flash_#{name}"
       = yield

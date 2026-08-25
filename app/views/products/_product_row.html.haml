@@ -8,10 +8,10 @@
       .col-md-3
         = form_with model: order_item do |f|
           %h4.text-end
-            Цена:
+            = t('.price_label')
             %span{:style => "color: green"}= number_to_currency product.price
           .input-group
             = f.number_field :quantity, value: 1, class: "form-control", min: 1
             = f.hidden_field :product_id, value: product.id
-            = f.submit "Купить", class: "btn btn-primary"
+            = f.submit t('.buy_button'), class: "btn btn-primary"
           %h4.text-end= product.category.name

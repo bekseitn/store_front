@@ -94,6 +94,10 @@ gem 'good_job'
 gem 'rails_admin', '~> 3.0' # 3.x targets Rails 6.1-7.x; verify config/initializers/rails_admin.rb against 3.x docs
 gem 'rails-erd'
 
+# Renders `_md`-suffixed locale keys per GUIDELINES.md's i18n convention -
+# see config/initializers/markdown.rb.
+gem 'redcarpet'
+
 gem 'rubocop', require: false
 gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false

@@ -1,6 +1,6 @@
 .d-flex.justify-content-between.align-items-center.p-2.mb-3.bg-light.border.rounded
-  = "Найдено " + products.count.to_s
-  = link_to 'Сбросить фильтр', request.path, class: "btn btn-secondary"
+  = t('.found_count', count: products.count)
+  = link_to t('.reset_button'), request.path, class: "btn btn-secondary"
 
 = will_paginate products, renderer: Bootstrap5PaginationRenderer
 

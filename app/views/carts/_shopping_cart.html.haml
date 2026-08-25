@@ -4,9 +4,8 @@
       - @order_item.errors.full_messages.each do |msg|
         %li= msg
 - if @order_items.blank?
-  %p.text-center
-    В вашей корзине нет товаров. Пожалуйста, #{link_to "вернитесь", root_path} и добавьте некоторые элементы в корзину.   
+  %p.text-center= t('.empty_md', root_path: root_path)
 - else
-  %p.text-right= link_to "Оформить заказ", new_ordering_path(order: current_order), class: "btn btn-primary"
+  %p.text-end= link_to t('.checkout_button'), new_ordering_path(order: current_order), class: "btn btn-primary"
   - @order_items.each do |order_item|
     = render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true

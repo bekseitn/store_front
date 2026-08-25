@@ -8,7 +8,7 @@
       .col-md-4
         = form_with model: order_item do |f|
           %h4.text-end
-            Цена:
+            = t('.price_label')
             %span{:style => "color: green"}= number_to_currency order_item.unit_price
           .row
             .col-md-4
@@ -16,8 +16,8 @@
               = f.hidden_field :product_id, value: product.id
             .col-md-8.text-end
               .btn-group
-                = f.submit "Обновить кол.", class: "btn btn-primary"
-                = link_to "Удалить", order_item, { data: { turbo_confirm: "Вы уверены что хотите удалить '#{order_item.product.name}' из корзины?", turbo_method: :delete }, class: "btn btn-danger" }
+                = f.submit t('.update_button'), class: "btn btn-primary"
+                = link_to t('.delete_button'), order_item, { data: { turbo_confirm: t('.delete_confirm', name: order_item.product.name), turbo_method: :delete }, class: "btn btn-danger" }
           %h4.text-end
-            Сумма:
+            = t('.total_label')
             %span{:style => "color: green"}= number_to_currency order_item.total_price

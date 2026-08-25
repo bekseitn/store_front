@@ -1,1 +1,1 @@
-= link_to "товаров в корзине: #{current_order.order_items.size} ( #{number_to_currency current_order.total} )", cart_path, class: "btn btn-link"
+= link_to t('.summary', count: current_order.order_items.size, total: number_to_currency(current_order.total)), cart_path, class: "btn btn-link"
