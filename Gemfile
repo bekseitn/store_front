@@ -13,9 +13,10 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'sassc-rails' # was sass-rails - its Sprockets-3-only lineage doesn't satisfy Rails 6's sprockets-rails
 
-# Use jquery as the JavaScript library (dropped at the next stage, once
-# Turbo/Stimulus replace the last things that needed it)
-gem 'jquery-rails'
+# jquery-rails dropped: Turbo/Stimulus (see below) replaced the last
+# things that needed it (remote:true forms, rails-ujs delete links) -
+# confirmed via grep that no view/JS file references jQuery/$( ) or
+# rails-ujs data attributes anymore before removing the gem.
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 

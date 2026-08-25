@@ -4,9 +4,12 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Furniture
     = stylesheet_link_tag    'application', media: 'all', 'data-turbo-track' => 'reload'
-    = javascript_include_tag 'legacy', 'data-turbo-track' => 'reload'
     = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
-    = javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+    -# Bootstrap 3's own JS plugins (alert dismiss, dropdowns, modals) are
+    -# jQuery plugins and can't run without it - dropped along with jQuery
+    -# here. Nothing in this app currently uses a Bootstrap JS-driven
+    -# component besides the alert's dismiss button, which just becomes a
+    -# no-op until Stage C's Bootstrap 5.3 rewrite (vanilla JS, no jQuery).
     = csrf_meta_tags
     = javascript_importmap_tags
   %body
