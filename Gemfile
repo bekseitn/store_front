@@ -24,6 +24,10 @@ gem 'jbuilder', '~> 2.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# Rails no longer bundles a default app server - found by actually
+# trying to run `bin/rails server` ("Could not find a server gem").
+gem 'puma'
+
 # Postgres driver - needed in every environment, database.yml uses the
 # postgresql adapter for development/test too, not just production/staging.
 gem 'pg'
