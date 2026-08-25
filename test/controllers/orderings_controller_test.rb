@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class OrderingsControllerTest < ActionController::TestCase
+class OrderingsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get :new
+    get new_ordering_path
     assert_response :success
   end
 
@@ -12,13 +12,13 @@ class OrderingsControllerTest < ActionController::TestCase
     order_item = order.order_items.create!(product: product, quantity: 2)
 
     assert_difference('Ordering.count', 1) do
-      post :create, ordering: {
+      post orderings_path, params: { ordering: {
         name: 'Jane Doe',
         address: '123 Main St',
         phone: '555-0100',
         order_id: order.id,
         city_id: cities(:one).id
-      }
+      } }
     end
 
     assert_redirected_to root_path

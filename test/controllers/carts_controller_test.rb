@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class CartsControllerTest < ActionController::TestCase
+class CartsControllerTest < ActionDispatch::IntegrationTest
   test "should get show" do
-    get :show
+    get cart_path
     assert_response :success
   end
 
